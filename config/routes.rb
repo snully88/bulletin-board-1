@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   #HOME
   get("/", {:controller => "boards", :action => "index"})
+  
   # CREATE
   post("/insert_post", { :controller => "posts", :action => "create" })
           

@@ -33,9 +33,11 @@
 
 
 <ul>
-  <% @list_of_board.each do |a_board| %>
+  <% @list_of_boards.each do |a_board| %>
     <li>
-      <a href= "/boards/<%= a_board.id %>"><%= a_board.name %></a>
+      <a href="/boards/<%= a_board.id %>"><%= a_board.name %></a>
+    </li>
+  <% end %>
 </ul>
 
 
