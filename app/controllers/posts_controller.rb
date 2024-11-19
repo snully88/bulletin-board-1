@@ -43,7 +43,7 @@ class PostsController < ApplicationController
 
     if the_post.valid?
       the_post.save
-      redirect_to("/posts/#{the_post.id}", { :notice => "Post updated successfully."} )
+      redirect_to("/board/#{the_post.board_id}", { :notice => "Post updated successfully."} )
     else
       redirect_to("/posts/#{the_post.id}", { :alert => the_post.errors.full_messages.to_sentence })
     end

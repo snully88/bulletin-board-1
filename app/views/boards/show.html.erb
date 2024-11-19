@@ -65,35 +65,33 @@
   <input type="date" id="expires_on_field" name="expires_on">
 </div>
 
-<div>
-  <label for="board_id_field">Expires on</label>
-  <input type="text" id="board_id_field" name="board_id">
-</div>
+
+  <input type="hidden" id="board_id_field" name="board_id" value="<%= @the_board.id %>">
 
 <button>
   Add Post
 </button>
 
-<div>
-  <div>
-    <h2>
-      Edit board
-    </h2>
+<h2>Active posts</2>
 
-    <form action="/modify_board/<%= @the_board.id %>"  method="post" >
-      <div>
-        <label for="name_box">
-          Name
-        </label>
+<% matching_posts = Post.where({ :board_id => @the_board.id}).order ({ :expires_on => :asc}) %>
 
-        <input type="text" id="name_box" name="query_name" value="<%= @the_board.name %>">
-      </div>
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Posted on</th>
+    <th>Expires on</th>
+  </tr>
 
-      <button>
-        Update board
-      </button>
-    </form>
-  </div>
-</div>
 
-<hr>
+<% matching_posts.each do |a_post| %>
+  <tr>
+    <td><%= a_post.title %></td>
+    <td><%= a_post.body %></td>
+    <td><%= a_post.created_at.strftime("%b %e, %Y") %></td>
+    <td><%= a_post.expires_on.strftime("%b %e, %Y") %></td>
+  </tr>
+<% end %>
+
+</table>
